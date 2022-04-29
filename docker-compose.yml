@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: ./packages/oneline-store-api
+      dockerfile: Dockerfile
+      target: dev
+    command: air -c .air.toml
+    hostname: api
+    volumes:
+      - ./packages/oneline-store-api:/app
+      - ./oas/online-store.json:/oas/online-store.json
+    ports:
+      - 9000:9000
+    restart: always
+    depends_on:
+      - db
+    environment:
+      JWT_SECRET_KEY: secret
+      DB_USERNAME: root
+      DB_PASSWORD: password
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: online_store_go_next
+      TEST_DB_NAME: online_store_go_next_test
+  db:
+    build:
+      context: ./
+      dockerfile: db.Dockerfile
+    hostname: db
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - dbdata:/var/lib/mysql
+      - dbsocket:/var/run/mysqld
+      - ./dbaccess.cnf:/dbaccess.cnf
+      - ./my.cnf:/my.cnf
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: online_store_go_next
+      MYSQL_ROOT_PASSWORD: password
+
+volumes:
+  dbdata:
+  dbsocket:
