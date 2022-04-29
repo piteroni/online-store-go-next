@@ -5,8 +5,6 @@ import (
 	"piteroni/online-store-api/restapi/auth"
 	"piteroni/online-store-api/restapi/operations"
 
-	"golang.org/x/xerrors"
-
 	"github.com/go-openapi/runtime/middleware"
 )
 
@@ -19,9 +17,16 @@ type AdminLoginHandler struct {
 }
 
 func (h *AdminLoginHandler) Handle(params operations.PostAdminLoginParams) middleware.Responder {
+	err := params.Body.Validate(nil)
+	if err != nil {
+		h.AppLogger.Print(err.Error())
+		return operations.NewPostAdminLoginBadRequest()
+	}
+
 	u, err := h.AdminAuthenticator.Authenticate(*params.Body.LoginID, *params.Body.Password)
 	if err != nil {
-		if xerrors.Is(err, &AuthenticationError{}) {
+		_, ok := err.(*AuthenticationError)
+		if ok {
 			h.AppLogger.Print(err.Error())
 			return operations.NewPostAdminLoginUnauthorized()
 		} else {

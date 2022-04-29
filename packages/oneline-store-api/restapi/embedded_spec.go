@@ -41,14 +41,7 @@ func init() {
         "operationId": "post-admin-login",
         "parameters": [
           {
-            "x-examples": {
-              "Create User Bob Fellow": {
-                "dateOfBirth": "1996-08-24",
-                "email": "bob.fellow@gmail.com",
-                "firstName": "Bob",
-                "lastName": "Fellow"
-              }
-            },
+            "x-examples": {},
             "name": "body",
             "in": "body",
             "schema": {
@@ -59,10 +52,12 @@ func init() {
               ],
               "properties": {
                 "loginId": {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
                 "password": {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 }
               }
             }
@@ -70,7 +65,7 @@ func init() {
         ],
         "responses": {
           "200": {
-            "description": "User Created",
+            "description": "",
             "schema": {
               "type": "object",
               "required": [
@@ -81,21 +76,22 @@ func init() {
                   "type": "string"
                 }
               }
-            },
-            "examples": {
-              "example-1": {
-                "token": "string"
-              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "x-nullable": true
             }
           },
           "401": {
-            "description": "Email Already Taken",
+            "description": "",
             "schema": {
               "type": "null"
             }
           },
           "500": {
-            "description": "Missing Required Information",
+            "description": "",
             "schema": {
               "type": "null"
             }
@@ -129,14 +125,7 @@ func init() {
         "operationId": "post-admin-login",
         "parameters": [
           {
-            "x-examples": {
-              "Create User Bob Fellow": {
-                "dateOfBirth": "1996-08-24",
-                "email": "bob.fellow@gmail.com",
-                "firstName": "Bob",
-                "lastName": "Fellow"
-              }
-            },
+            "x-examples": {},
             "name": "body",
             "in": "body",
             "schema": {
@@ -147,10 +136,12 @@ func init() {
               ],
               "properties": {
                 "loginId": {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
                 "password": {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 }
               }
             }
@@ -158,7 +149,7 @@ func init() {
         ],
         "responses": {
           "200": {
-            "description": "User Created",
+            "description": "",
             "schema": {
               "type": "object",
               "required": [
@@ -169,21 +160,22 @@ func init() {
                   "type": "string"
                 }
               }
-            },
-            "examples": {
-              "example-1": {
-                "token": "string"
-              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "x-nullable": true
             }
           },
           "401": {
-            "description": "Email Already Taken",
+            "description": "",
             "schema": {
               "type": "null"
             }
           },
           "500": {
-            "description": "Missing Required Information",
+            "description": "",
             "schema": {
               "type": "null"
             }

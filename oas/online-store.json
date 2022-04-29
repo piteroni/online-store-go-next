@@ -21,7 +21,7 @@
         "operationId": "post-admin-login",
         "responses": {
           "200": {
-            "description": "User Created",
+            "description": "",
             "schema": {
               "type": "object",
               "properties": {
@@ -33,20 +33,22 @@
                 "token"
               ]
             },
-            "examples": {
-              "example-1": {
-                "token": "string"
-              }
+            "examples": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "x-nullable": true
             }
           },
           "401": {
-            "description": "Email Already Taken",
+            "description": "",
             "schema": {
               "type": "null"
             }
           },
           "500": {
-            "description": "Missing Required Information",
+            "description": "",
             "schema": {
               "type": "null"
             }
@@ -61,10 +63,12 @@
               "type": "object",
               "properties": {
                 "loginId": {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
                 "password": {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 }
               },
               "required": [
@@ -73,14 +77,7 @@
               ]
             },
             "description": "",
-            "x-examples": {
-              "Create User Bob Fellow": {
-                "firstName": "Bob",
-                "lastName": "Fellow",
-                "email": "bob.fellow@gmail.com",
-                "dateOfBirth": "1996-08-24"
-              }
-            }
+            "x-examples": {}
           }
         ]
       },

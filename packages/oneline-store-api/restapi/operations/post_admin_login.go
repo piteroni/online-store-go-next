@@ -69,10 +69,12 @@ type PostAdminLoginBody struct {
 
 	// login Id
 	// Required: true
+	// Min Length: 1
 	LoginID *string `json:"loginId"`
 
 	// password
 	// Required: true
+	// Min Length: 1
 	Password *string `json:"password"`
 }
 
@@ -82,10 +84,12 @@ func (o *PostAdminLoginBody) UnmarshalJSON(data []byte) error {
 
 		// login Id
 		// Required: true
+		// Min Length: 1
 		LoginID *string `json:"loginId"`
 
 		// password
 		// Required: true
+		// Min Length: 1
 		Password *string `json:"password"`
 	}
 
@@ -124,12 +128,20 @@ func (o *PostAdminLoginBody) validateLoginID(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("body"+"."+"loginId", "body", *o.LoginID, 1); err != nil {
+		return err
+	}
+
 	return nil
 }
 
 func (o *PostAdminLoginBody) validatePassword(formats strfmt.Registry) error {
 
 	if err := validate.Required("body"+"."+"password", "body", o.Password); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("body"+"."+"password", "body", *o.Password, 1); err != nil {
 		return err
 	}
 

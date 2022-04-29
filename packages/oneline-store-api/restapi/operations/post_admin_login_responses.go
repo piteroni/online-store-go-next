@@ -14,7 +14,7 @@ import (
 // PostAdminLoginOKCode is the HTTP code returned for type PostAdminLoginOK
 const PostAdminLoginOKCode int = 200
 
-/*PostAdminLoginOK User Created
+/*PostAdminLoginOK post admin login o k
 
 swagger:response postAdminLoginOK
 */
@@ -55,10 +55,52 @@ func (o *PostAdminLoginOK) WriteResponse(rw http.ResponseWriter, producer runtim
 	}
 }
 
+// PostAdminLoginBadRequestCode is the HTTP code returned for type PostAdminLoginBadRequest
+const PostAdminLoginBadRequestCode int = 400
+
+/*PostAdminLoginBadRequest Bad Request
+
+swagger:response postAdminLoginBadRequest
+*/
+type PostAdminLoginBadRequest struct {
+
+	/*
+	  In: Body
+	*/
+	Payload interface{} `json:"body,omitempty"`
+}
+
+// NewPostAdminLoginBadRequest creates PostAdminLoginBadRequest with default headers values
+func NewPostAdminLoginBadRequest() *PostAdminLoginBadRequest {
+
+	return &PostAdminLoginBadRequest{}
+}
+
+// WithPayload adds the payload to the post admin login bad request response
+func (o *PostAdminLoginBadRequest) WithPayload(payload interface{}) *PostAdminLoginBadRequest {
+	o.Payload = payload
+	return o
+}
+
+// SetPayload sets the payload to the post admin login bad request response
+func (o *PostAdminLoginBadRequest) SetPayload(payload interface{}) {
+	o.Payload = payload
+}
+
+// WriteResponse to the client
+func (o *PostAdminLoginBadRequest) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+
+	rw.WriteHeader(400)
+	payload := o.Payload
+	if err := producer.Produce(rw, payload); err != nil {
+		panic(err) // let the recovery middleware deal with this
+	}
+}
+
 // PostAdminLoginUnauthorizedCode is the HTTP code returned for type PostAdminLoginUnauthorized
 const PostAdminLoginUnauthorizedCode int = 401
 
-/*PostAdminLoginUnauthorized Email Already Taken
+/*PostAdminLoginUnauthorized post admin login unauthorized
 
 swagger:response postAdminLoginUnauthorized
 */
@@ -100,7 +142,7 @@ func (o *PostAdminLoginUnauthorized) WriteResponse(rw http.ResponseWriter, produ
 // PostAdminLoginInternalServerErrorCode is the HTTP code returned for type PostAdminLoginInternalServerError
 const PostAdminLoginInternalServerErrorCode int = 500
 
-/*PostAdminLoginInternalServerError Missing Required Information
+/*PostAdminLoginInternalServerError post admin login internal server error
 
 swagger:response postAdminLoginInternalServerError
 */
