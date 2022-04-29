@@ -2,6 +2,6 @@
 
 set -eu
 
-cd "$(dirname "$0")"
+cd "$(dirname "$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)")"
 
 swagger generate server --strict-additional-properties -f /oas/online-store.json

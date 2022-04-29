@@ -92,8 +92,10 @@ func TestAdminLoginHandler(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			params := operations.NewPostAdminLoginParams()
 			params.HTTPRequest = httptest.NewRequest("POST", "http://localhost:9000", nil)
-			params.Body.LoginID = &tt.loginID
-			params.Body.Password = &tt.password
+			params.Body = operations.PostAdminLoginBody{
+				LoginID:  &tt.loginID,
+				Password: &tt.password,
+			}
 
 			response := h.Handle(params)
 
