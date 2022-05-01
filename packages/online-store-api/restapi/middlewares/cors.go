@@ -21,7 +21,7 @@ func SetupCORS(handler http.Handler) (http.Handler, error) {
 	}
 
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},
+		AllowedOrigins: origins,
 		AllowedHeaders: []string{"*"},
 	})
 
