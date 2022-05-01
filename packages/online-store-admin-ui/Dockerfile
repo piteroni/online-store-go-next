@@ -22,7 +22,7 @@ FROM base as builder
 
 COPY . .
 
-# COPY package.json /app/package.json
-# COPY yarn.lock /app/yarn.lock
+COPY package.json /app/package.json
+COPY yarn.lock /app/yarn.lock
 
-# RUN yarn && yarn build
+RUN yarn && yarn build
