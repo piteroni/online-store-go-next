@@ -1,7 +1,7 @@
 # https://editorconfig.org
 root = true
 
-[*.ts,*.tsx,*.tf,*.sh]
+[*.ts,*.tsx,*.tf,*.sh,*.css]
 charset = utf-8
 end_of_line = lf
 indent_size = 2

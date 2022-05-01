@@ -4,6 +4,8 @@ set -eu
 
 cd "$(dirname "$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)")"
 
+docker-compose down
+
 (cd packages/online-store-admin-ui && rm -rf node_modules node_modules_tmp)
 
 docker-compose build admin-ui
