@@ -3,13 +3,13 @@ version: "3"
 services:
   api:
     build:
-      context: ./packages/oneline-store-api
+      context: ./packages/online-store-api
       dockerfile: Dockerfile
       target: dev
     command: air -c .air.toml
     hostname: api
     volumes:
-      - ./packages/oneline-store-api:/app
+      - ./packages/online-store-api:/app
       - ./oas/online-store.json:/oas/online-store.json
     ports:
       - 9000:9000
@@ -40,7 +40,23 @@ services:
     environment:
       MYSQL_DATABASE: online_store_go_next
       MYSQL_ROOT_PASSWORD: password
+  admin-ui:
+    build: 
+      context: ./packages/online-store-admin-ui
+      dockerfile: Dockerfile
+      target: dev
+    command: yarn dev
+    depends_on:
+      - api
+    hostname: admin-ui
+    volumes:
+      - ./packages/online-store-admin-ui:/app
+      - admin_ui_node_modules:/app/node_modules
+      - ./oas/online-store.json:/oas/online-store.json
+    ports:
+      - 3100:3100
 
 volumes:
   dbdata:
   dbsocket:
+  admin_ui_node_modules:
