@@ -37,6 +37,7 @@ func init() {
   "paths": {
     "/admin/login": {
       "post": {
+        "description": "post ",
         "summary": "Login With Admin",
         "operationId": "post-admin-login",
         "parameters": [
@@ -44,6 +45,7 @@ func init() {
             "x-examples": {},
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "required": [
@@ -121,6 +123,7 @@ func init() {
   "paths": {
     "/admin/login": {
       "post": {
+        "description": "post ",
         "summary": "Login With Admin",
         "operationId": "post-admin-login",
         "parameters": [
@@ -128,6 +131,7 @@ func init() {
             "x-examples": {},
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "required": [

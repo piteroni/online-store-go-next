@@ -2,18 +2,13 @@
   "swagger": "2.0",
   "info": {
     "title": "online-store",
-    "version": "1.0"
+    "version": "1.0",
+    "description": ""
   },
   "host": "localhost:9000",
-  "schemes": [
-    "http"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "consumes": [
-    "application/json"
-  ],
+  "schemes": ["http"],
+  "produces": ["application/json"],
+  "consumes": ["application/json"],
   "paths": {
     "/admin/login": {
       "post": {
@@ -29,11 +24,10 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "token"
-              ]
+              "required": ["token"]
             },
-            "examples": {}
+            "examples": {},
+            "headers": {}
           },
           "400": {
             "description": "Bad Request",
@@ -54,11 +48,12 @@
             }
           }
         },
-        "description": "",
+        "description": "post ",
         "parameters": [
           {
             "in": "body",
             "name": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
@@ -71,10 +66,7 @@
                   "minLength": 1
                 }
               },
-              "required": [
-                "loginId",
-                "password"
-              ]
+              "required": ["loginId", "password"]
             },
             "description": "",
             "x-examples": {}

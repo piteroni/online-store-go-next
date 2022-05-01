@@ -1,8 +1,18 @@
+import { api } from "@/api"
 import Logo from "@/components/shared/Logo"
 import Navbar from "@/components/shared/Navbar"
 import { NextPage } from "next"
+import { useState } from "react"
 
 const LoginPage: NextPage = () => {
+  const [loginId, setLoginId] = useState("")
+  const [password, setPassword] = useState("")
+
+  const login = async () => {
+    const response = await api.postAdminLogin({ loginId, password })
+    console.log(response.token)
+  }
+
   return (
     <>
       <Navbar>
@@ -29,17 +39,11 @@ const LoginPage: NextPage = () => {
 
             <div className="w-3/6 ml-6 mb-3">
               <input
-                id="email"
                 className="w-full appearance-none blocktext-gray-700 py-3 px-4 border-2 outline-none rounded leading-tight focus:border-gray-500 transition-all duration-200"
-                type="email"
+                type="text"
+                value={loginId}
+                onChange={(e) => setLoginId(e.target.value)}
               />
-
-              <p
-                v-if="form.email.$dirty && form.email.$anyInvalid"
-                className="emailErrorMessage w-full mt-2 text-red-500 text-xs transition-all duration-200"
-              >
-                {/* {{ "" }} */}
-              </p>
             </div>
           </div>
 
@@ -50,18 +54,11 @@ const LoginPage: NextPage = () => {
 
             <div className="w-3/6 ml-6 mb-3">
               <input
-                id="password"
                 className="w-full appearance-none blocktext-gray-700 py-3 px-4 border-2 outline-none rounded leading-tight focus:border-gray-500 transition-all duration-200"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
-
-              <p className="passwordErrorMessage w-full mt-2 text-red-500 text-xs transition-all duration-200">
-                {/* {{ form.password.required.$message }} */}
-              </p>
-
-              <p className="errorMessage w-full mt-2 text-red-500 text-xs transition-all duration-200">
-                {/* {{ message }} */}
-              </p>
             </div>
           </div>
 
@@ -70,6 +67,7 @@ const LoginPage: NextPage = () => {
               className="loginButton flex text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:opacity-80 transition-all duration-300"
               style={{ backgroundColor: "#1976D2" }}
               type="button"
+              onClick={login}
             >
               ログイン
             </button>

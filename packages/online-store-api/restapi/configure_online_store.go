@@ -14,6 +14,7 @@ import (
 	"piteroni/online-store-api/database"
 	"piteroni/online-store-api/restapi/auth"
 	"piteroni/online-store-api/restapi/handlers/admin_login_handler"
+	"piteroni/online-store-api/restapi/middlewares"
 	"piteroni/online-store-api/restapi/operations"
 )
 
@@ -84,5 +85,10 @@ func setupMiddlewares(handler http.Handler) http.Handler {
 // The middleware configuration happens before anything, this middleware also applies to serving the swagger.json document.
 // So this is a good place to plug in a panic handling middleware, logging and metrics.
 func setupGlobalMiddleware(handler http.Handler) http.Handler {
+	handler, err := middlewares.SetupCORS(handler)
+	if err != nil {
+		panic(err)
+	}
+
 	return handler
 }

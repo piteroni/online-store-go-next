@@ -40,6 +40,8 @@ func NewPostAdminLogin(ctx *middleware.Context, handler PostAdminLoginHandler) *
 
 Login With Admin
 
+post
+
 */
 type PostAdminLogin struct {
 	Context *middleware.Context

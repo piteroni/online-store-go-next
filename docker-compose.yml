@@ -18,6 +18,7 @@ services:
       - db
     environment:
       JWT_SECRET_KEY: secret
+      ALLOW_ORIGINS: '["http://localhost:3100"]'
       DB_USERNAME: root
       DB_PASSWORD: password
       DB_HOST: db
