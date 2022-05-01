@@ -10,7 +10,7 @@ services:
     hostname: api
     volumes:
       - ./packages/online-store-api:/app
-      - ./oas/online-store.json:/oas/online-store.json
+      - ./online-store.json:/oas/online-store.json
     ports:
       - 9000:9000
     restart: always
@@ -41,7 +41,7 @@ services:
       MYSQL_DATABASE: online_store_go_next
       MYSQL_ROOT_PASSWORD: password
   admin-ui:
-    build: 
+    build:
       context: ./packages/online-store-admin-ui
       dockerfile: Dockerfile
       target: dev
@@ -52,7 +52,7 @@ services:
     volumes:
       - ./packages/online-store-admin-ui:/app
       - admin_ui_node_modules:/app/node_modules
-      - ./oas/online-store.json:/oas/online-store.json
+      - ./online-store.json:/oas/online-store.json
     ports:
       - 3100:3100
 
